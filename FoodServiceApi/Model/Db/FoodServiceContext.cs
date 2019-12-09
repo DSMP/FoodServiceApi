@@ -13,5 +13,9 @@ namespace FoodServiceApi.Model.Db
         public DbSet<Category> Categories { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
+        public FoodServiceContext(DbContextOptions<FoodServiceContext> options) : base(options)
+        {
+
+        }
     }
 }
