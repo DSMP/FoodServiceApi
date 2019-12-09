@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodServiceApi", "FoodServiceApi\FoodServiceApi.csproj", "{2848B6A7-DC91-4A6E-928C-1EC27F4ED319}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{36076A3A-B2BA-44D7-B93B-4F21F756D53A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2848B6A7-DC91-4A6E-928C-1EC27F4ED319}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2848B6A7-DC91-4A6E-928C-1EC27F4ED319}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2848B6A7-DC91-4A6E-928C-1EC27F4ED319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36076A3A-B2BA-44D7-B93B-4F21F756D53A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36076A3A-B2BA-44D7-B93B-4F21F756D53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36076A3A-B2BA-44D7-B93B-4F21F756D53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36076A3A-B2BA-44D7-B93B-4F21F756D53A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
