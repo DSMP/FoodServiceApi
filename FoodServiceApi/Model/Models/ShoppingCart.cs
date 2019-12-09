@@ -16,9 +16,13 @@ namespace FoodServiceApi.Model.Models
         public string AppliedVoucher { get; private set; }
         public Promotion Promo { get; private set; }
 
-        public bool AddProductToBasket(ProductDto product)
+        public bool AddProductToBasket(FoodServiceContext context, ProductDto product)
         {
             if (product.Quantity <= 0)
+            {
+                return false;
+            }
+            if (!_CheckProduct(context, product))
             {
                 return false;
             }
@@ -27,8 +31,13 @@ namespace FoodServiceApi.Model.Models
             _CalcDiscount(Promo);
             return true;
         }
-        public void RemoveProducts(ProductDto product)
+
+        public void RemoveProducts(FoodServiceContext context, ProductDto product)
         {
+            if (!_CheckProduct(context, product))
+            {
+                return;
+            }
             _shoppingCartProducts.Remove(product);
             TotalCost -= product.Price;
             _CalcDiscount(Promo);
@@ -78,6 +87,11 @@ namespace FoodServiceApi.Model.Models
                 }
             }
             DiscountedCost = res;
+        }
+
+        private bool _CheckProduct(FoodServiceContext context, ProductDto product)
+        {
+            return context.Products.Any(p => p.ProductId == product.ProductId && p.Name.Equals(product.Name));
         }
     }
 }
