@@ -27,12 +27,8 @@ namespace FoodServiceApi
         {
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<FoodServiceContext>();
-            services.AddTransient<DbContextOptions<FoodServiceContext>>(
-                imp => {
-                    var options = new DbContextOptionsBuilder<FoodServiceContext>();
-                    options.UseSqlServer(Settings.ConnectionString);
-                    return options.Options;
-                    });
+            services.AddDbContext<FoodServiceContext>(
+                optionsAction: p => p.UseSqlServer(Settings.ConnectionString));
             services.AddSingleton<ShoppingCartSingleton>();
             services.AddControllers();
             services.AddMvc();
