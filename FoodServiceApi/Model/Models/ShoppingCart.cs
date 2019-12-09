@@ -15,6 +15,10 @@ namespace FoodServiceApi.Model.Models
         public decimal DiscountedCost { get; private set; }
         public string AppliedVoucher { get; private set; }
         public Promotion Promo { get; private set; }
+        public ShoppingCart()
+        {
+            _shoppingCartProducts = new List<ProductDto>();
+        }
 
         public bool AddProductToBasket(FoodServiceContext context, ProductDto product)
         {
