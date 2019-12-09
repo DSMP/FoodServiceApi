@@ -1,5 +1,6 @@
 ﻿using FoodServiceApi.Model.Db;
 using FoodServiceApi.Model.Dtos;
+using FoodServiceApi.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,19 @@ namespace FoodServiceApi.Model.Models
         public decimal TotalCost { get; private set; }
         public decimal DiscountedCost { get; private set; }
         public string AppliedVoucher { get; private set; }
+        public Promotion Promo { get; private set; }
 
         public void AddProductToBasket(ProductDto product)
         {
             _shoopingCartProducts.Add(product);
             TotalCost += product.Price;
+            _CalcDiscount(Promo.Products, Promo);
         }
         public void RemoveProducts(ProductDto product)
         {
             _shoopingCartProducts.Remove(product);
             TotalCost -= product.Price;
+            _CalcDiscount(Promo.Products, Promo);
         }
         public bool TryAppliedVoucher(FoodServiceContext context, string voucher)
         {
@@ -32,6 +36,7 @@ namespace FoodServiceApi.Model.Models
                 return false;
             }
             AppliedVoucher = voucher;
+            Promo = promo;
             _CalcDiscount(promo.Products, promo);
             
             return true;
