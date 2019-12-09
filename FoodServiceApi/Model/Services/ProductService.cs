@@ -29,5 +29,10 @@ namespace FoodServiceApi.Model.Services
             }).ToList();
             
         }
+
+        public bool IsProductOutOfStock(int productId)
+        {
+            return _context.Products.Where(p => p.ProductId == productId).Select(s => s.Quantity < 0).FirstOrDefault();
+        }
     }
 }
