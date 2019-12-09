@@ -8,6 +8,6 @@ namespace FoodServiceApi.Model.Services
 {
     public interface IProductService : ICrudService<ProductDto>
     {
-
+        bool IsProductOutOfStock(int productId);
     }
 }
