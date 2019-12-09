@@ -10,7 +10,7 @@ namespace FoodServiceApi.Model.Models
 {
     public class ShoppingCart
     {
-        private List<ProductDto> _shoopingCartProducts;
+        private List<ProductDto> _shoppingCartProducts;
         public decimal TotalCost { get; private set; }
         public decimal DiscountedCost { get; private set; }
         public string AppliedVoucher { get; private set; }
@@ -18,13 +18,13 @@ namespace FoodServiceApi.Model.Models
 
         public void AddProductToBasket(ProductDto product)
         {
-            _shoopingCartProducts.Add(product);
+            _shoppingCartProducts.Add(product);
             TotalCost += product.Price;
             _CalcDiscount(Promo);
         }
         public void RemoveProducts(ProductDto product)
         {
-            _shoopingCartProducts.Remove(product);
+            _shoppingCartProducts.Remove(product);
             TotalCost -= product.Price;
             _CalcDiscount(Promo);
         }
