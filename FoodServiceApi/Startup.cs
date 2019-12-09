@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FoodServiceApi.Model.Db;
 using FoodServiceApi.Model.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace FoodServiceApi
 {
@@ -30,12 +24,14 @@ namespace FoodServiceApi
         {
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<FoodServiceContext>();
+            services.AddTransient<DbContextOptions<FoodServiceContext>>(
+                imp => new DbContextOptionsBuilder<FoodServiceContext>().Options);
             services.AddControllers();
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Food Store API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food Store API", Version = "v1" });
             });
         }
 
