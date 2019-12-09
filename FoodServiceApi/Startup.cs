@@ -16,9 +16,11 @@ namespace FoodServiceApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Settings = configuration.Get<Settings>();
         }
 
         public IConfiguration Configuration { get; }
+        public Settings Settings { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -26,7 +28,11 @@ namespace FoodServiceApi
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<FoodServiceContext>();
             services.AddTransient<DbContextOptions<FoodServiceContext>>(
-                imp => new DbContextOptionsBuilder<FoodServiceContext>().Options);
+                imp => {
+                    var options = new DbContextOptionsBuilder<FoodServiceContext>();
+                    options.UseSqlServer(Settings.ConnectionString);
+                    return options.Options;
+                    });
             services.AddSingleton<ShoppingCartSingleton>();
             services.AddControllers();
             services.AddMvc();
