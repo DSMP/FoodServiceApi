@@ -20,13 +20,13 @@ namespace FoodServiceApi.Model.Models
         {
             _shoopingCartProducts.Add(product);
             TotalCost += product.Price;
-            _CalcDiscount(Promo.Products, Promo);
+            _CalcDiscount(Promo);
         }
         public void RemoveProducts(ProductDto product)
         {
             _shoopingCartProducts.Remove(product);
             TotalCost -= product.Price;
-            _CalcDiscount(Promo.Products, Promo);
+            _CalcDiscount(Promo);
         }
         public bool TryAppliedVoucher(FoodServiceContext context, string voucher)
         {
@@ -37,13 +37,14 @@ namespace FoodServiceApi.Model.Models
             }
             AppliedVoucher = voucher;
             Promo = promo;
-            _CalcDiscount(promo.Products, promo);
+            _CalcDiscount(promo);
             
             return true;
         }
 
-        private void _CalcDiscount(List<Entities.Product> p, Entities.Promotion promo)
+        private void _CalcDiscount(Promotion promo)
         {
+            var p = promo.Products;
             DiscountedCost = 0;
             decimal res = 0m;
             if (promo.IsForOrder)
