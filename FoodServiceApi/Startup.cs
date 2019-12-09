@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FoodServiceApi.Model.Db;
 using FoodServiceApi.Model.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace FoodServiceApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<FoodServiceContext>();
             services.AddControllers();
         }
 
