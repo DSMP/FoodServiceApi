@@ -28,8 +28,14 @@ namespace FoodServiceApi.Controllers
         public IActionResult AddProduct([FromBody] ProductDto productDto)
         {
             ShoppingCart shoppingCart = GetUserShoppingCart();
-            shoppingCart.AddProductToBasket(productDto);
-            return Ok("200");
+            if (shoppingCart.AddProductToBasket(productDto))
+            {
+                return Ok("added");
+            }
+            else
+            {
+                return Ok("outofstock");
+            }
         }
 
         [Authorize]
@@ -38,7 +44,7 @@ namespace FoodServiceApi.Controllers
         {
             ShoppingCart shoppingCart = GetUserShoppingCart();
             shoppingCart.RemoveProducts(productDto);
-            return Ok("200");
+            return Ok("removed");
         }
 
         [Authorize]

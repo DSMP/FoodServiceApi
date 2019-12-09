@@ -16,11 +16,16 @@ namespace FoodServiceApi.Model.Models
         public string AppliedVoucher { get; private set; }
         public Promotion Promo { get; private set; }
 
-        public void AddProductToBasket(ProductDto product)
+        public bool AddProductToBasket(ProductDto product)
         {
+            if (product.Quantity <= 0)
+            {
+                return false;
+            }
             _shoppingCartProducts.Add(product);
             TotalCost += product.Price;
             _CalcDiscount(Promo);
+            return true;
         }
         public void RemoveProducts(ProductDto product)
         {
