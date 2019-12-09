@@ -12,11 +12,11 @@ using Xunit;
 
 namespace XUnitTestProject.Model.Services
 {
-    public class ProductServiceTest
+    public class ProductServiceTestS
     {
         private DbContextOptionsBuilder<FoodServiceContext> _optionsBuilder;
 
-        public ProductServiceTest()
+        public ProductServiceTestS()
         {
             _optionsBuilder = new DbContextOptionsBuilder<FoodServiceContext>();
             _optionsBuilder.UseInMemoryDatabase("inMemoryDb");
