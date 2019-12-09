@@ -25,7 +25,7 @@ namespace FoodServiceApi.Controllers
             return _productService.GetAll();
         }
         // not necesery, on front, app can check is out of stock
-        [HttpGet("outofstock/{id:int}")]
+        [HttpGet("outofstock/{productId:int}")]
         public bool CheckIsOutOfStock(int productId)
         {
             return _productService.IsProductOutOfStock(productId);
