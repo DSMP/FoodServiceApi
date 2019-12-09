@@ -2,5 +2,6 @@
 {
     public class Promotion
     {
+        public int PromotionId { get; set; }
     }
 }
