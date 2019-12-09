@@ -1,4 +1,5 @@
 using FoodServiceApi.Model.Db;
+using FoodServiceApi.Model.Models;
 using FoodServiceApi.Model.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,7 @@ namespace FoodServiceApi
             services.AddTransient<FoodServiceContext>();
             services.AddTransient<DbContextOptions<FoodServiceContext>>(
                 imp => new DbContextOptionsBuilder<FoodServiceContext>().Options);
+            services.AddSingleton<ShoppingCartSingleton>();
             services.AddControllers();
             services.AddMvc();
 
